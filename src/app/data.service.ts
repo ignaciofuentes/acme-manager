@@ -26,15 +26,27 @@ export class DataService {
     });
   }
   applicationsStore: CacheStore<MortgageApplication>;
+
   getApplications(): any {
-    return this.applicationsStore.find();
+    var query = new Kinvey.Query();
+    query.descending("dueDate");
+    return this.applicationsStore.find(query);
+  }
+  getSingleApplication(id): any {
+    return this.applicationsStore.findById(id);
+  }
+  setApplicationStatus(mortgageApplication): any {
+    return this.applicationsStore.save(mortgageApplication);
   }
   logout(): Promise<void> {
     return Kinvey.User.logout();
   }
   user: Kinvey.User;
-  loginWithMIC(arg0: string): any {
-    throw new Error("Method not implemented.");
+
+  async loginWithMIC(redirectUri: string) {
+    this.user = await Kinvey.User.loginWithMIC(redirectUri);
+
+    return this.user;
   }
   async login(username: string, password: string): Promise<Kinvey.User> {
     this.user = await Kinvey.User.login(username, password);
