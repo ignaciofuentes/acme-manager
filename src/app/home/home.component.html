@@ -15,9 +15,7 @@
         media="(min-width: 450px)"
       >
         <ng-template kendoGridCellTemplate let-dataItem>
-          <a [routerLink]="['/details', dataItem._id]">{{
-            dataItem.dueDate | date
-          }}</a>
+          <a [routerLink]="['/details', dataItem._id]">{{ dataItem._id }}</a>
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column
