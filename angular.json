@@ -141,5 +141,8 @@
       }
     }
   },
-  "defaultProject": "acme-manager"
+  "defaultProject": "acme-manager",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }
